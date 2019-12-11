@@ -1,0 +1,16 @@
+FROM nginx:1.17.6-alpine
+
+RUN adduser --uid 9000 --no-create-home --disabled-password dokuwiki && \
+addgroup nginx dokuwiki
+
+WORKDIR /srv
+
+RUN wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz && \
+tar -zxf dokuwiki-stable.tgz && \
+mv dokuwiki*/ dokuwiki && \
+chown -R 9000:9000 ./dokuwiki && \
+chmod -R 770 ./dokuwiki
+
+#VOLUME /srv/dokuwiki
+
+#RUN chmod -R 770 /srv/dokuwiki

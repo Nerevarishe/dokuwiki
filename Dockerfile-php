@@ -1,0 +1,4 @@
+FROM php:7.4.0-fpm-alpine3.10
+
+RUN adduser --uid 9000 --no-create-home --disabled-password dokuwiki && \
+addgroup www-data dokuwiki
